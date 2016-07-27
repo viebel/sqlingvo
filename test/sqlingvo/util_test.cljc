@@ -81,6 +81,12 @@
     (is (= (placeholder) "?1"))
     (is (= (placeholder) "?2"))))
 
+(deftest test-sql-keyword-hyphenate
+  (is (= (util/sql-keyword-hyphenate "_") :-)))
+
+(deftest test-sql-name-underscore
+  (is (= (util/sql-name-underscore "-") "_")))
+
 (deftest test-sql-quote-fn
   (are [x expected]
       (= (util/sql-quote-fn db x) expected)

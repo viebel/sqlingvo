@@ -1,5 +1,7 @@
 (ns sqlingvo.test
-  (:require #?(:clj [clojure.test :refer :all]
+  (:require #?(:clj [sqlingvo.spec :as spec])
+            #?(:clj [clojure.spec.test :refer [instrument]])
+            #?(:clj [clojure.test :refer :all]
                :cljs [cljs.test :refer-macros [is]])
             [sqlingvo.core :refer [sql]]
             [sqlingvo.db :as db]))
@@ -23,3 +25,5 @@
   `(if-cljs
     (cljs.test/is (= (sqlingvo.core/sql ~statement) ~expected))
     (is (= (sql ~statement) ~expected))))
+
+#?(:clj (instrument))
