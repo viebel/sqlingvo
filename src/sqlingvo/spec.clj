@@ -62,9 +62,13 @@
   :ret ::table-node)
 
 (s/fdef util/sql-keyword-hyphenate
-  :args (s/cat :identifier identifier?)
-  :ret string?)
+  :args (s/cat :identifier (s/nilable ::identifier))
+  :ret (s/nilable string?))
 
 (s/fdef util/sql-name-underscore
-  :args (s/cat :identifier identifier?)
-  :ret string?)
+  :args (s/cat :identifier (s/nilable ::identifier))
+  :ret (s/nilable string?))
+
+(s/fdef util/sql-type-name
+  :args (s/cat :identifier (s/nilable ::identifier))
+  :ret (s/nilable string?))
