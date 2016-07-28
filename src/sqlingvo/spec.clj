@@ -20,7 +20,37 @@
         :string string?
         :symbol symbol?))
 
-(s/def ::op keyword?)
+(s/def ::op
+  #{:alias
+    :array
+    :attr
+    :check
+    :column
+    :condition
+    :constant
+    :copy
+    :create-table
+    :delete
+    :distinct
+    :drop-materialized-view
+    :drop-table
+    :explain
+    :expr-list
+    :insert
+    :join
+    :like
+    :list
+    :nil
+    :on-conflict
+    :on-conflict-on-constraint
+    :refresh-materialized-view
+    :select
+    :table
+    :truncate
+    :update
+    :values
+    :with})
+
 (s/def ::name keyword?)
 (s/def ::table keyword?)
 (s/def ::schema keyword?)
