@@ -5,13 +5,6 @@
             [sqlingvo.expr :as expr]
             [sqlingvo.util :as util]))
 
-(defn identifier?
-  "Returns true if `x` is a identifier, otherwise false."
-  [x]
-  (or (keyword? x)
-      (string? x)
-      (symbol? x)))
-
 (defn column?
   "Returns true if `x` is a column, otherwise false."
   [x]
@@ -21,6 +14,11 @@
   "Returns true if `x` is a table, otherwise false."
   [x]
   (and (map? x) (= (:op x) :table)))
+
+(s/def ::identifier
+  (s/or :keyword keyword?
+        :string string?
+        :symbol symbol?))
 
 (s/def ::op keyword?)
 (s/def ::name keyword?)
@@ -43,12 +41,12 @@
   "The column identifier."
   (s/or :alias ::alias
         :column column?
-        :identifier identifier?))
+        :identifier ::identifier))
 
 (def table-identifier
   "The table identifier."
   (s/or :alias ::alias
-        :identifier identifier?
+        :identifier ::identifier
         :table table?))
 
 (s/fdef expr/parse-expr
